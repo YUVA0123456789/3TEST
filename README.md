@@ -420,5 +420,36 @@ int main() {
     return 0;
 }
 
+// 7th program 
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    ofstream outputFile("example.txt");
+
+    if (outputFile.is_open()) {
+        outputFile << "Hello, File I/O!" << endl;
+        outputFile << "This is a sample text file." << endl;
+        outputFile.close();
+
+        ifstream inputFile("example.txt");
+        if (inputFile.is_open()) {
+            string line;
+            while (getline(inputFile, line)) {
+                cout << line << endl;
+            }
+            inputFile.close();
+        } else {
+            cout << "Unable to open the file for reading." << endl;
+        }
+    } else {
+        cout << "Unable to open the file for writing." << endl;
+    }
+
+    return 0;
+}
+
 
 
