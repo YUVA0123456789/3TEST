@@ -187,27 +187,28 @@ int main() {
 }
 
 4th program
-Design three classes’ student test and results, where result inherited 
+/*Design three classes’ student test and results, where result inherited 
 from test and test is inherited from students. Write possible functions 
 to initialize the values. Also write a main function for execution by 
-creating objects.
+creating objects.*/
 
 #include <iostream>
 #include <string>
+using namespace std;
 
 class Student {
 protected:
-    std::string studentName;
+    string studentName;
 
 public:
-    Student(const std::string& name) : studentName(name) {}
+    Student(const string& name) : studentName(name) {}
 
-    void setStudentName(const std::string& name) {
+    void setStudentName(const string& name) {
         studentName = name;
     }
 
     void displayStudent() const {
-        std::cout << "Student Name: " << studentName << std::endl;
+        cout << "Student Name: " << studentName << endl;
     }
 };
 
@@ -216,7 +217,7 @@ protected:
     int testScore;
 
 public:
-    Test(const std::string& name, int score) : Student(name), testScore(score) {}
+    Test(const string& name, int score) : Student(name), testScore(score) {}
 
     void setTestScore(int score) {
         testScore = score;
@@ -224,7 +225,7 @@ public:
 
     void displayTest() const {
         displayStudent();
-        std::cout << "Test Score: " << testScore << std::endl;
+        cout << "Test Score: " << testScore << endl;
     }
 };
 
@@ -233,7 +234,7 @@ private:
     char grade;
 
 public:
-    Result(const std::string& name, int score, char grade) : Test(name, score), grade(grade) {}
+    Result(const string& name, int score, char grade) : Test(name, score), grade(grade) {}
 
     void setGrade(char newGrade) {
         grade = newGrade;
@@ -241,31 +242,28 @@ public:
 
     void displayResult() const {
         displayTest();
-        std::cout << "Grade: " << grade << std::endl;
+        cout << "Grade: " << grade << endl;
     }
 };
 
 int main() {
     Result studentResult("John Doe", 85, 'A');
 
-    // Displaying the result
     studentResult.displayResult();
 
-    // Changing the test score
     studentResult.setTestScore(92);
 
-    // Changing the grade
     studentResult.setGrade('B');
 
-    // Displaying the updated result
     studentResult.displayResult();
 
     return 0;
 }
 
+
  
 PROGRAM 5  
- Design a class bank account with current and saving bank account as 
+Design a class bank account with current and saving bank account as 
 inherited classes. Class bank account should have following data 
 members: Account number, Name, Balance Amount, and member 
 functions. To initialize the value to deposit and withdrawal amount 
@@ -274,63 +272,62 @@ after checking the minimum balance.
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class BankAccount {
 protected:
-    std::string accountNumber;
-    std::string accountHolderName;
+    string accountNumber;
+    string accountHolderName;
     double balance;
 
 public:
-    BankAccount(const std::string& accNum, const std::string& accHolder, double initialBalance)
+    BankAccount(const string& accNum, const string& accHolder, double initialBalance)
         : accountNumber(accNum), accountHolderName(accHolder), balance(initialBalance) {}
 
     void deposit(double amount) {
         balance += amount;
-        std::cout << "Amount " << amount << " deposited. Current balance: " << balance << std::endl;
+        cout << "Amount " << amount << " deposited. Current balance: " << balance << endl;
     }
 
     virtual void withdraw(double amount) {
         if (balance - amount >= 0) {
             balance -= amount;
-            std::cout << "Amount " << amount << " withdrawn. Current balance: " << balance << std::endl;
+            cout << "Amount " << amount << " withdrawn. Current balance: " << balance << endl;
         } else {
-            std::cout << "Insufficient funds. Withdrawal not allowed." << std::endl;
+            cout << "Insufficient funds. Withdrawal not allowed." << endl;
         }
     }
 
     void displayAccountDetails() const {
-        std::cout << "Account Number: " << accountNumber << std::endl;
-        std::cout << "Account Holder: " << accountHolderName << std::endl;
-        std::cout << "Balance: " << balance << std::endl;
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Account Holder: " << accountHolderName << endl;
+        cout << "Balance: " << balance << endl;
     }
 };
 
 class CurrentAccount : public BankAccount {
 public:
-    CurrentAccount(const std::string& accNum, const std::string& accHolder, double initialBalance)
+    CurrentAccount(const string& accNum, const string& accHolder, double initialBalance)
         : BankAccount(accNum, accHolder, initialBalance) {}
 
     void withdraw(double amount) override {
-        // No minimum balance check for Current Account
         balance -= amount;
-        std::cout << "Amount " << amount << " withdrawn from Current Account. Current balance: " << balance << std::endl;
+        cout << "Amount " << amount << " withdrawn from Current Account. Current balance: " << balance << endl;
     }
 };
 
 class SavingsAccount : public BankAccount {
 public:
-    SavingsAccount(const std::string& accNum, const std::string& accHolder, double initialBalance)
+    SavingsAccount(const string& accNum, const string& accHolder, double initialBalance)
         : BankAccount(accNum, accHolder, initialBalance) {}
 
     void withdraw(double amount) override {
-        // Minimum balance check for Savings Account
         const double minimumBalance = 500.0;
-
         if (balance - amount >= minimumBalance) {
             balance -= amount;
-            std::cout << "Amount " << amount << " withdrawn from Savings Account. Current balance: " << balance << std::endl;
+            cout << "Amount " << amount << " withdrawn from Savings Account. Current balance: " << balance << endl;
         } else {
-            std::cout << "Withdrawal not allowed. Minimum balance not maintained." << std::endl;
+            cout << "Withdrawal not allowed. Minimum balance not maintained." << endl;
         }
     }
 };
@@ -343,7 +340,7 @@ int main() {
     currentAcc.withdraw(200.0);
     currentAcc.displayAccountDetails();
 
-    std::cout << "--------------------------" << std::endl;
+    cout << "--------------------------" << endl;
 
     savingsAcc.deposit(800.0);
     savingsAcc.withdraw(1000.0);
@@ -351,6 +348,7 @@ int main() {
 
     return 0;
 }
+
 
 PROGRAM 6  
 Write a C++ program for desining a caluculator for addition, 
@@ -453,3 +451,4 @@ int main() {
 
 
 
+ 
